@@ -1,13 +1,43 @@
 function hasTargetSum(array, target) {
   // Write your algorithm here
+    // for (let i = 0; i < array.length; i++) {
+    //   const complement = target - array[i];
+    //   for (let j = i + 1; j < array.length; j++) {
+    //     if (array[j] === complement) return true;
+    //   }
+    // }
+    // return false;
+  let seenNumbers = new Set();
+  for (const num of array) {
+    const complement = target - num;
+    if(seenNumbers.has(complement)){
+      return true;
+    }
+    else{
+      seenNumbers.add(num)
+    }
+  }
+  return false
 }
 
 /* 
   Write the Big O time complexity of your function here
+  time complexity = O(n)
+  space complexity = O(n)
 */
 
 /* 
   Add your pseudocode here
+
+  create an object to keep track of all the numbers we've seen
+iterate over the array of numbers
+  for the current number, identify a complementary number that adds to our target
+  (for example: if our number is 2, and the target is 5, the complementary number is 3)
+  check if any of the keys in our object is the complement to the current number
+    if so, return true
+  save the current number as the key on our object so we can check it later against other numbers
+if we reach the end of the array, return false
+  
 */
 
 /*
